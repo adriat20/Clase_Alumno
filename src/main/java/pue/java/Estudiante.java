@@ -19,9 +19,8 @@ public class Estudiante extends Persona {
         return calificacion;
     }
 
-    public void setCalificacion(float calificacion) {
-        this.calificacion = calificacion;
-    }
+
+
 
     @Override
     public boolean asistir() {
@@ -37,8 +36,11 @@ public class Estudiante extends Persona {
 
         Faker faker = new Faker();
         Random random = new Random();
-        int cantidadEstudiantes = 30;
-        //int cantidadEstudiantes = random.nextInt(Aula.MAXESTUDIANTES) + 1; // Genera un número aleatorio entre 1 y el máximo de estudiantes
+        //int cantidadEstudiantes = 30;
+
+        // Genera un número aleatorio entre 1 y el máximo de estudiantes
+        int cantidadEstudiantes = random.nextInt(Aula.MAXESTUDIANTES) + 10;
+        //System.out.println(cantidadEstudiantes);
 
         for (int i = 0; i < cantidadEstudiantes; i++) {
             String nombre = faker.name().firstName();
@@ -46,10 +48,10 @@ public class Estudiante extends Persona {
             String edad = Integer.toString(faker.number().numberBetween(18, 20));
             char sexo = faker.options().option('M', 'F');
             // Crea una disponibilidad aleatoria (true o false)
-            boolean disponibilidad = true;
-            //boolean disponibilidad = faker.bool().bool();
-            float calificacion = faker.number().numberBetween(0, 11);
-            // Crea una instancia de Estudiante y agrégala a la lista
+            //boolean disponibilidad = true;
+            boolean disponibilidad = faker.bool().bool();
+            float calificacion = faker.number().numberBetween(0, 10);
+            // Crea una instancia de Estudiante y se agrega a la lista
             estudiantes.add(new Estudiante(nombre, apellido, edad, sexo, disponibilidad, calificacion));
         }
 
