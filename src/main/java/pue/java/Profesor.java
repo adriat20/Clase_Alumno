@@ -1,22 +1,17 @@
 package pue.java;
 
 import com.github.javafaker.Faker;
+import lombok.Getter;
 
+import java.util.Locale;
 import java.util.Random;
 
+@Getter
 public class Profesor extends Persona {
     private Materias materia;
 
     public Profesor(String nombre, String apellido, String edad, char sexo, boolean disponibilidad, Materias materia) {
         super(nombre, apellido, edad, sexo, disponibilidad);
-        this.materia = materia;
-    }
-
-    public Materias getMateria() {
-        return materia;
-    }
-
-    public void setMateria(Materias materia) {
         this.materia = materia;
     }
 
@@ -33,7 +28,7 @@ public class Profesor extends Persona {
     }
 
     public static Profesor generaProfesor() {
-        Faker faker = new Faker();
+        Faker faker = new Faker(new Locale("Es"));
         String nombre = faker.name().firstName();
         String apellido = faker.name().lastName();
         String edad = Integer.toString(faker.number().numberBetween(30, 68));
@@ -42,6 +37,7 @@ public class Profesor extends Persona {
         Materias materia = Materias.MATEMATICAS;
         //Materias materia = Materias.values()[faker.random().nextInt(Materias.values().length)]; // seleccionar una materia aleatoria
         boolean disponibilidad = faker.bool().bool();
+
         return new Profesor(nombre, apellido, edad, sexo, disponibilidad, materia);
     }
 

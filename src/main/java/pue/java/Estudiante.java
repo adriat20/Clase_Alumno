@@ -1,11 +1,14 @@
 package pue.java;
 
 import com.github.javafaker.Faker;
+import lombok.Getter;
+
 import java.util.*;
 import java.util.Random;
 
 public class Estudiante extends Persona {
 
+    @Getter
     private float calificacion;
     //numero maximo de estudiantes que caben en la clase
     private int nEstudiantes = 30;
@@ -13,10 +16,6 @@ public class Estudiante extends Persona {
     public Estudiante(String nombre, String apellido, String edad, char sexo, boolean disponibilidad, float calificacion) {
         super(nombre, apellido, edad, sexo, disponibilidad);
         this.calificacion = calificacion;
-    }
-
-    public float getCalificacion() {
-        return calificacion;
     }
 
 
