@@ -32,17 +32,21 @@ public class Estudiante extends Persona {
         // Creamos la lista de estudiantes
         List<Estudiante> estudiantes = new ArrayList<>();
 
-        Faker faker = new Faker();
-
-        // Genera un número aleatorio entre 15 y 30 para el número de estudiantes
+        Faker faker = new Faker(new Locale("Es"));
         Random random = new Random();
-        int cantidadEstudiantes = random.nextInt(16) + 15;
+        //int cantidadEstudiantes = 30;
+
+        // Genera un número aleatorio entre 1 y el máximo de estudiantes
+        int cantidadEstudiantes = random.nextInt(Aula.MAXESTUDIANTES) + 10;
+        //System.out.println(cantidadEstudiantes);
 
         for (int i = 0; i < cantidadEstudiantes; i++) {
             String nombre = faker.name().firstName();
             String apellido = faker.name().lastName();
             String edad = Integer.toString(faker.number().numberBetween(18, 20));
             char sexo = faker.options().option('M', 'F');
+            // Crea una disponibilidad aleatoria (true o false)
+            //boolean disponibilidad = true;
             boolean disponibilidad = faker.bool().bool();
             float calificacion = faker.number().numberBetween(0, 10);
             // Crea una instancia de Estudiante y se agrega a la lista

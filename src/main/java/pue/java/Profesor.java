@@ -4,7 +4,7 @@ import com.github.javafaker.Faker;
 
 import java.util.Random;
 
-
+//He añadido el plugin faker al ID para una correcta sincronizacion nombre - genero
 public class Profesor extends Persona {
     private Materias materia;
 
@@ -45,4 +45,5 @@ public class Profesor extends Persona {
         boolean disponibilidad = faker.bool().bool();
         return new Profesor(nombre, apellido, edad, sexo, disponibilidad, materia);
     }
+
 }

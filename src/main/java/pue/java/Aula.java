@@ -23,7 +23,7 @@ public class Aula {
 
             // Comprueba la materia del profesor y la materia que se requiere
             if (profesor.getMateria() != materias) {
-                throw new IllegalArgumentException("El profesor del aula " + getId() + " imparte la materia de"
+                throw new IllegalArgumentException("El profesor del aula " + getId() + " imparte la materia de "
                         + getMaterias() + ", no de " + profesor.getMateria());
             }
 
@@ -39,7 +39,7 @@ public class Aula {
             return true;
         } catch (IllegalArgumentException e) {
             // Captura la excepción y la maneja
-            System.out.println("Excepción en el aula " + getId() + ": " + e.getMessage());
+            System.out.println("\nExcepción en el aula " + getId() + ": " + e.getMessage());
             return false;
         }
     }
