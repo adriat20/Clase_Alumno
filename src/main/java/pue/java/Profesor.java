@@ -39,6 +39,7 @@ public class Profesor extends Persona {
         String apellido = faker.name().lastName();
         String edad = Integer.toString(faker.number().numberBetween(30, 68));
         char sexo = faker.options().option('M', 'F');
+        //Ambas son correctas pero para una mejor depuracion (y no necesitar varios intentos) la he puesto estática
         Materias materia = Materias.MATEMATICAS;
         //Materias materia = Materias.values()[faker.random().nextInt(Materias.values().length)]; // seleccionar una materia aleatoria
         boolean disponibilidad = faker.bool().bool();
