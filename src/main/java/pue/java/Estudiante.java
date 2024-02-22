@@ -3,9 +3,10 @@ package pue.java;
 import com.github.javafaker.Faker;
 import lombok.Getter;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 import java.util.Random;
-
 public class Estudiante extends Persona {
 
     @Getter
@@ -40,18 +41,23 @@ public class Estudiante extends Persona {
         //System.out.println(cantidadEstudiantes);
 
         for (int i = 0; i < cantidadEstudiantes; i++) {
+
             String nombre = faker.name().firstName();
             String apellido = faker.name().lastName();
-            String edad = Integer.toString(faker.number().numberBetween(18, 20));
+            String edad = Integer.toString(faker.number().numberBetween(18, 25));
+
             char sexo = faker.options().option('M', 'F');
-            // Crea una disponibilidad aleatoria (true o false)
+            //Crea una disponibilidad aleatoria (true o false)
             //boolean disponibilidad = true;
             boolean disponibilidad = faker.bool().bool();
             float calificacion = faker.number().numberBetween(0, 10);
+
             // Crea una instancia de Estudiante y se agrega a la lista
             estudiantes.add(new Estudiante(nombre, apellido, edad, sexo, disponibilidad, calificacion));
         }
 
         return estudiantes;
     }
+
+
 }

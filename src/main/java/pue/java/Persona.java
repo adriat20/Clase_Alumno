@@ -11,12 +11,7 @@ public abstract class Persona {
     private String apellido;
     private String edad;
     private char sexo;
-    private boolean disponibilidad;
+    protected boolean disponibilidad;
 
     public abstract boolean asistir();
-
-
-
-
-
 }

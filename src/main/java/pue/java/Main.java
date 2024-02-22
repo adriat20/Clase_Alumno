@@ -13,6 +13,7 @@ public class Main {
 
         List<Aula> aulas = new ArrayList<>();
         aulas.add(new Aula(1, materiaProfesorDisponible, estudiantes, profesor));
+        //Creo un nuevo aula con la misma lista para no usar más memoria ya que la lógica es para que salga la excepcion
         aulas.add(new Aula(2, materiaProfesorAusente, estudiantes, profesor));
 
 
@@ -22,18 +23,18 @@ public class Main {
 
                 System.out.println("\nSe puede dar clase en el aula " + aula.getId());
                 System.out.println("El profesor es: " + profesor.getNombre() + " " + profesor.getApellido() + " " +
-                        profesor.getEdad() + " años " + "sexo "+profesor.getSexo() + " e imparte " + profesor.getMateria() + "\n");
+                        profesor.getEdad() + " años " + "sexo " + profesor.getSexo() + " e imparte " + profesor.getMateria() + "\n");
 
                 List<Estudiante> estudiantesAula = aula.getListaEstudiantes();
 
                 // Ordenar la lista de estudiantes alfabéticamente por apellido
-                estudiantesAula.stream()
-                        .sorted(Comparator.comparing(Estudiante::getApellido))
-                        .forEach(System.out::println);
+                estudiantes.stream()
+                           .sorted(Comparator.comparing(Estudiante::getApellido))
+                           .forEach(System.out::println);
 
                 System.out.println("\nCantidad de alumnos aprobados: " + calcularAprobados(estudiantesAula) + "\n" +
                         "Cantidad de alumnos suspensos: " + calcularSuspensos(estudiantesAula) + "\n" +
-                        "Nota media de la clase: " + mediaNotas(estudiantesAula) + "\n");
+                        "Nota media de la clase: " + calcularMediaNotas(estudiantesAula) + "\n");
             }
         }
     }
@@ -48,21 +49,21 @@ public class Main {
         return contador;
     }
 
-    public static int calcularSuspensos(List<Estudiante>estudiantes){
+    public static int calcularSuspensos(List<Estudiante> estudiantes) {
         int contador = 0;
-        for (Estudiante estudiante : estudiantes){
-            if(estudiante.getCalificacion() < 5){
+        for (Estudiante estudiante : estudiantes) {
+            if (estudiante.getCalificacion() < 5) {
                 contador++;
             }
         }
         return contador;
     }
 
-    public static float mediaNotas(List<Estudiante> estudiantes){
+    public static float calcularMediaNotas(List<Estudiante> estudiantes) {
         float media, acumulador = 0;
         int contador = 0;
 
-        for(Estudiante estudiante : estudiantes){
+        for (Estudiante estudiante : estudiantes) {
             acumulador += estudiante.getCalificacion();
             contador++;
         }
