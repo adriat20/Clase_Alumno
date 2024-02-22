@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
+
 public class Estudiante extends Persona {
 
     @Getter
@@ -25,7 +26,7 @@ public class Estudiante extends Persona {
         Random r = new Random();
         int probabilidad = r.nextInt(100);
 
-        return probabilidad < 80;
+        return probabilidad < 60;
     }
 
     public static List<Estudiante> generaEstudiantes() {
@@ -58,6 +59,66 @@ public class Estudiante extends Persona {
 
         return estudiantes;
     }
+    static int[] calcularAprobados(List<Estudiante> estudiantes) {
+        int contadorM = 0;
+        int contadorF = 0;
+
+        for (Estudiante estudiante : estudiantes) {
+            if (estudiante.getCalificacion() >= 5) {
+                if (estudiante.getSexo() == 'M') {
+                    contadorM++;
+                } else if (estudiante.getSexo() == 'F') {
+                    contadorF++;
+                }
+            }
+        }
+        return new int[]{contadorM, contadorF};
+    }
 
 
+    static int[] calcularSuspensos(List<Estudiante> estudiantes) {
+        int contadorM = 0;
+        int contadorF = 0;
+
+        for (Estudiante estudiante : estudiantes) {
+            if (estudiante.getCalificacion() < 5) {
+                if (estudiante.getSexo() == 'M') {
+                    contadorM++;
+                } else if (estudiante.getSexo() == 'F') {
+                    contadorF++;
+                }
+            }
+        }
+        return new int[]{contadorM, contadorF};
+    }
+
+
+    static float[] calcularMediaNotas(List<Estudiante> estudiantes) {
+        float mediaTotal, mediaM, mediaF, acumuladorTotal = 0, acumuladorM = 0, acumuladorF = 0;
+        int contadorTotal = 0, contadorM = 0, contadorF = 0;
+
+
+        for (Estudiante estudiante : estudiantes) {
+            if (estudiante.getSexo() == 'M') {
+                acumuladorM += estudiante.getCalificacion();
+                contadorM++;
+            } else if (estudiante.getSexo() == 'F') {
+                acumuladorF += estudiante.getCalificacion();
+                contadorF++;
+            }
+            contadorTotal++;
+            acumuladorTotal += estudiante.getCalificacion();
+        }
+
+        //mediaM = acumuladorM / contadorM;
+        mediaM = contadorM > 0 ? acumuladorM / contadorM : 0;
+
+        mediaF = contadorF > 0 ? acumuladorF / contadorF : 0;
+
+        mediaTotal = contadorTotal > 0 ? acumuladorTotal / contadorTotal : 0;
+
+
+        return new float[]{mediaM, mediaF, mediaTotal};
+    }
 }
+
